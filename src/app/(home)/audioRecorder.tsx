@@ -15,7 +15,7 @@ export const AudioRecorder = () => {
           </h2>
         </CardHeader>
         <CardContent>
-          <div className="w-full md:flex flex-col space-y-2 itens-center justify-between px-2 ">
+          <div className="w-full flex flex-col md:flex-row space-y-2 itens-center justify-between px-2 ">
             <div className="group flex itens-center justify-center  rounded-lg  text-center hover:cursor-pointer bg-brand-200 ">
               <Mic className="text-brand-50 mt-2 pl-2" size={25} />
               <Button variant={"icon"} className="text-brand-50">
