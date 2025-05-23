@@ -1,47 +1,35 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Menu } from "lucide-react";
 import Image from "next/image";
-
+import React from "react";
 import Logo from "../../assets/Logo.svg";
-import { RecordTypeSelector } from "./recordTypeSeletor";
-import { ExamsUploader } from "./examsUploader";
-import { AudioRecorder } from "./audioRecorder";
-import { Response } from "./response";
-
-export default function Home() {
+import { FirstSection } from "./(sections)/firstSection";
+import { TeamSection } from "./(sections)/teamSection";
+const page = () => {
   return (
-    <div className="h-dvh w-full">
-      <div className="w-full h-16 bg-zinc-100 shadow-lg flex items-center justify-between p-2">
-        <div className="flex items-center justify-center gap-2">
-          <Menu size={30} />
-          <Image
-            className="mb-2"
-            src={Logo}
-            alt="HeadMed logo"
-            width={108.5}
-            height={30}
-          />
-        </div>
+    <div className="h-dvh w-dvw flex flex-col ">
+      <nav className="w-full h-16 bg-zinc-100 shadow-lg  flex items-center justify-between p-2 mr-1">
+        <Image
+          className="pl-3 mb-2"
+          src={Logo}
+          alt="HeadMed logo"
+          width={118.5}
+          height={35}
+        />
+        <ul
+          className="flex items-center justify-center gap-4 pr-4
+          [&>li]:text-lg [&>li]:font-bold [&>li]:text-zinc-800 [&>li]:hover:text-brand-200 [&>li]:hover:underline [&>li]:cursor-pointer"
+        >
+          <li>sobre</li>
+          <li>pricing</li>
+          <li>FAQ</li>
+        </ul>
+      </nav>
 
-        <Avatar>
-          <AvatarImage src="https://github.com/oartuu.png" />
-          <AvatarFallback>AN</AvatarFallback>
-        </Avatar>
-      </div>
-
-{/*main div  */ }
-      <div className="flex flex-col items-center justify-center p-6 gap-6 md:grid grid-cols-2 grid-rows-2">
-        
-      <RecordTypeSelector/>
-      <ExamsUploader/>
-      <AudioRecorder/>
-      <Response/>
-       
-
-        
-
-        
-      </div>
+      <main className="h-[calc(100vh-6rem)] overflow-x-hidden">
+        <FirstSection />
+        <TeamSection />
+      </main>
     </div>
   );
-}
+};
+
+export default page;
