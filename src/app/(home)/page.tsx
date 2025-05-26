@@ -3,6 +3,7 @@ import { NavBar } from './(template)/navBar'
 import { Footer } from './(template)/footer'
 import { AutoPront } from './(sections)/autoPront'
 import { FeatureSection } from './(sections)/featureSection'
+import { HowItWorks } from './(sections)/howItWorks'
 
 const page = () => {
   return (
@@ -13,6 +14,7 @@ const page = () => {
 
         <AutoPront />
         <FeatureSection />
+        <HowItWorks />
 
       </main>
 

@@ -10,7 +10,7 @@ export const FeatureSection = () => {
 
         <h1 className='text-5xl w-2xl font-bold text-center'>Principais Funcionalidades</h1>
 
-        <p className='text-zinc-500 text-xl font-light w-[690px] text-center'>
+        <p className='text-zinc-500 text-xl font-light text-center'>
           Desenvolvido especificamente para profissionais de saúde modernos
         </p>
 
@@ -21,12 +21,12 @@ export const FeatureSection = () => {
               <BrainCircuit className='text-brand-200' />
             </CardHeader>
           
-            <CardContent>
+            <CardContent className='font-bold text-2xl'>
               <CardTitle>IA médica avançada</CardTitle>
             </CardContent>
           
             <CardFooter>
-              <CardDescription>
+              <CardDescription className='text-black text-base'>
                 Processamento de linguagem natural especializado em terminologia médica
               </CardDescription>
             </CardFooter>
@@ -37,12 +37,12 @@ export const FeatureSection = () => {
               <Stethoscope className='text-brand-200' />
             </CardHeader>
 
-            <CardContent>
+            <CardContent className='font-bold text-2xl'>
               <CardTitle>Transcrição de Consultas Inteligentes</CardTitle>
             </CardContent>
           
             <CardFooter>
-              <CardDescription>
+              <CardDescription className='text-black text-base'>
                 Converta gravações de áudio em tempo real ou previamente gravadas em prontuários estruturados automaticamente.
               </CardDescription>
             </CardFooter>
@@ -53,12 +53,12 @@ export const FeatureSection = () => {
               <Zap className='text-brand-200' />
             </CardHeader>
 
-            <CardContent>
+            <CardContent className='font-bold text-2xl'>
               <CardTitle>Processamento Rápido</CardTitle>
             </CardContent>
           
             <CardFooter>
-              <CardDescription>
+              <CardDescription className='text-black text-base'>
                 Gere documentos médicos completos em segundos, não em horas
               </CardDescription>
             </CardFooter>
@@ -69,12 +69,12 @@ export const FeatureSection = () => {
               <Shield className='text-brand-200' />
             </CardHeader>
 
-            <CardContent>
+            <CardContent className='font-bold text-2xl'>
               <CardTitle>Segurança LGPD</CardTitle>
             </CardContent>
           
             <CardFooter>
-              <CardDescription>
+              <CardDescription className='text-black text-base'>
                 Processamento de linguagem natural especializado em
                 terminologia médica
               </CardDescription>
@@ -86,12 +86,12 @@ export const FeatureSection = () => {
               <Webhook className='text-brand-200' />
             </CardHeader>
 
-            <CardContent>
+            <CardContent className='font-bold text-2xl'>
               <CardTitle>Disponibilização da API</CardTitle>
             </CardContent>
           
             <CardFooter>
-              <CardDescription>
+              <CardDescription className='text-black text-base'>
                 Processamento de linguagem natural especializado em
                 terminologia médica
               </CardDescription>
@@ -103,12 +103,12 @@ export const FeatureSection = () => {
               <Blocks className='text-brand-200' />
             </CardHeader>
 
-            <CardContent>
+            <CardContent className='font-bold text-2xl'>
               <CardTitle>Integração com Sistemas Existentes</CardTitle>
             </CardContent>
           
             <CardFooter>
-              <CardDescription>
+              <CardDescription className='text-black text-base'>
                 Converta gravações de áudio em tempo real ou previamente gravadas em prontuários estruturados automaticamente.
               </CardDescription>
             </CardFooter>
