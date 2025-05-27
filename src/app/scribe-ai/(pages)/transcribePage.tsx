@@ -2,14 +2,14 @@ import React from 'react'
 import { Button } from "@/components/ui/button";
 import { Mic, NotebookPen, PencilLine, PenLine, Upload } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 
 
 
 export const TranscribePage = () => {
   return (
     <div className="h-full flex-1 flex items-center justify-center">
-      <Card className="w-3/4">
+      <Card className="w-3/4 px-6     ">
         <CardHeader className="flex-row">
           <div className="flex items-center justify-between w-full">
             <span className="text-2xl font-bold">
@@ -21,6 +21,9 @@ export const TranscribePage = () => {
           </div>
           <Separator />
         </CardHeader>
+        <CardDescription className="text-md font-semibold ml-5">
+          <p>Clique no botão para gravar ou selecione um áudio para enviar</p>
+        </CardDescription>
         <CardContent className="flex justify-between items-center">
           <div className="flex justify-between items-center gap-4 ">
             <Button className="bg-brand-200 hover:bg-brand-200/80 hover:cursor-pointer text-md font-semibold">
