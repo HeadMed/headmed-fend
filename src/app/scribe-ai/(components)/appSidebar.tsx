@@ -13,7 +13,7 @@ import Image from "next/image";
 import React from "react";
 import { useSidebar } from "@/components/ui/sidebar";
 import Logo from "../../../assets/Logo-scribe.svg";
-
+import Link from "next/link";
 export const AppSidebar = () => {
   const { open } = useSidebar();
   return (
@@ -32,7 +32,11 @@ export const AppSidebar = () => {
         <ul className=" h-2/3  flex flex-col justify-evenly ">
           <li>
             <div className="flex items-center justify-between gap-2 hover:cursor-pointer hover:text-brand-200 pr-2 ">
-              {open ? <span className="text-lg  font-bold">Início</span> : null}
+              {open ? (
+                <Link href="/scribe-ai" className="text-lg  font-bold">
+                  Início
+                </Link>
+              ) : null}
               <HomeIcon />
             </div>
             {open ? <Separator className="my-2 bg-zinc-700" /> : null}
@@ -40,7 +44,10 @@ export const AppSidebar = () => {
           <li>
             <div className="flex items-center justify-between gap-2 hover:cursor-pointer hover:text-brand-200 pr-2  ">
               {open ? (
-                <span className="text-lg font-bold">Pacientes</span>
+                <Link href="/scribe-ai/patients" className="text-lg font-bold">
+                  {" "}
+                  Pacientes
+                </Link>
               ) : null}
               <UsersRound />
             </div>
@@ -49,7 +56,9 @@ export const AppSidebar = () => {
           <li>
             <div className="flex items-center justify-between gap-2 hover:cursor-pointer hover:text-brand-200 pr-2 ">
               {open ? (
-                <span className="text-lg font-bold">Adicionar Paciente</span>
+                <Link href="/scribe-ai/patients/add" className="text-lg font-bold">
+                  Adicionar Paciente
+                </Link>
               ) : null}
               <UserRoundPlus />
             </div>
@@ -58,7 +67,9 @@ export const AppSidebar = () => {
           <li>
             <div className="flex items-center justify-between gap-2 hover:cursor-pointer hover:text-brand-200 pr-2 ">
               {open ? (
-                <span className="text-lg font-bold">Nova Transcrição</span>
+                <Link href="/scribe-ai/transcribe" className="text-lg font-bold">
+                  Nova Transcrição
+                </Link>
               ) : null}
               <NotebookPen />
             </div>
