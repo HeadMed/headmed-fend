@@ -56,8 +56,8 @@ class ApiService {
   }
 
   // Patient methods
-  async getPatients(skip = 0, limit = 100) {
-    return this.request(`/patients?skip=${skip}&limit=${limit}`);
+  async getPatients() {
+    return this.request(`/patients`);
   }
 
   async getPatient(id: number) {

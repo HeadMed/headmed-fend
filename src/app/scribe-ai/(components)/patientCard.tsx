@@ -3,13 +3,20 @@ import { NotebookPen, UserRound } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-export const UserCard = () => {
+
+interface PatientCardProps {
+  name: string;
+ 
+}
+
+
+export const PatientCard = ({name}:PatientCardProps) => {
   return (
     <Card className="w-96">
       <CardHeader>
         <div className="flex items-center justify-between">
           <UserRound strokeWidth="2" />
-          <span>Ivisson Pereira</span>
+          <span>{name}</span>
         </div>
         <Separator />
       </CardHeader>
