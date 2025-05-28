@@ -2,15 +2,16 @@
 
 import { ProtectedRoute } from "@/components/protectedRoute";
 import { AppSidebar } from "../(components)/appSidebar";
-import { TranscribePage } from "../(pages)/transcribePage";
+import { HomePage } from "../(pages)/homePage";
+import { PatientSelectPage } from "../(pages)/patientSelectPage";
 
-export default function Transcription() {
+
+export default function Home() {
   return (
     <ProtectedRoute>
       <div className="h-dvh w-full flex bg-linear-to-l from-white from-30% to-brand-50">
         <AppSidebar />
-
-        <TranscribePage />
+        <PatientSelectPage/>
       </div>
     </ProtectedRoute>
   );
