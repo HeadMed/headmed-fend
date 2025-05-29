@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import React, { useState } from "react";
 import { useAuth } from "@/contexts/authContext";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const page = () => {
     const [username, setUsername] = useState("");
@@ -55,35 +56,52 @@ const page = () => {
               Login
             </h1>
           </CardHeader>
-        <form onSubmit={handleSubmit}>
-          <CardContent>
-            <div className="py-3">
-              <Label htmlFor="user" className="text-md text-brand-dark mb-3">
-                Usuário
-              </Label>
-              <Input name="user" value={username} onChange={(e)=> setUsername(e.target.value)} placeholder="Insira o nome de usuário" />
-            </div>
-            <div>
-              <Label
-                htmlFor="password"
-                className="text-md text-brand-dark mb-3"
+          <form onSubmit={handleSubmit}>
+            <CardContent>
+              <div className="py-3">
+                <Label htmlFor="user" className="text-md text-brand-dark mb-3">
+                  Usuário
+                </Label>
+                <Input
+                  name="user"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Insira o nome de usuário"
+                />
+              </div>
+              <div>
+                <Label
+                  htmlFor="password"
+                  className="text-md text-brand-dark mb-3"
+                >
+                  Senha
+                </Label>
+                <Input
+                  name="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Insira a Senha"
+                />
+              </div>
+            </CardContent>
+            <CardFooter className="flex flex-col items-center mt-6 gap-4">
+              <Button
+                type="submit"
+                className="w-[80%] bg-brand-200 hover:bg-brand-200/80 text-zinc-200 font-bold"
               >
-                Senha
-              </Label>
-              <Input
-                name="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Insira a Senha"
-              />
-            </div>
-          </CardContent>
-          <CardFooter className="flex justify-center mt-6">
-            <Button type="submit" className="w-[80%] bg-brand-200 hover:bg-brand-200/80 text-zinc-200 font-bold">
-              Entrar
-            </Button>
-          </CardFooter> 
+                Entrar
+              </Button>
+              <p className="text-sm text-brand-dark">
+                Não tem uma conta?{" "}
+                <Link
+                  href="/auth/register"
+                  className="text-brand-200 hover:underline"
+                >
+                  Faça o cadastro
+                </Link>
+              </p>
+            </CardFooter>
           </form>
         </Card>
       </div>

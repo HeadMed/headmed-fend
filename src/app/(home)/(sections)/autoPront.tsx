@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import React from 'react'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link';
 
 export const AutoPront = () => {
   return (
@@ -17,11 +18,12 @@ export const AutoPront = () => {
         </p>
 
         <div className="w-1/3 flex justify-between px-5">
-          <Button className="text-neutral-50 bg-brand-200 hover:bg-brand-200/80 hover:cursor-pointer font-bold text-lg ">
-            Começar Gratuitamente
-            <ArrowRight />
-          </Button>
-
+          <Link href="/auth/login">
+            <Button className="text-neutral-50 bg-brand-200 hover:bg-brand-200/80 hover:cursor-pointer font-bold text-lg ">
+              Testar
+              <ArrowRight />
+            </Button>
+          </Link>
           <Button className="hover:cursor-pointer" variant="outline">
             Assinar
           </Button>

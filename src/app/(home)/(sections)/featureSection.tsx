@@ -5,7 +5,7 @@ import React from 'react'
 export const FeatureSection = () => {
   return (
     <section className="flex flex-col items-center py-16 h-auto bg-white">
-      <div className="flex flex-col items-center px-4">
+      <div className="flex flex-col space-y-4 items-center px-4">
         <h1 className="text-5xl w-2xl font-bold text-center">
           Principais Funcionalidades
         </h1>
