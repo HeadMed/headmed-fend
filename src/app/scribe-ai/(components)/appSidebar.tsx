@@ -37,53 +37,53 @@ export const AppSidebar = () => {
       <SidebarContent className="p-4 justify-center">
         <ul className=" h-2/3  flex flex-col justify-evenly ">
           <li>
-            <div className="flex items-center justify-between gap-2 hover:cursor-pointer hover:text-brand-200 pr-2 ">
-              {open ? (
-                <Link href="/scribe-ai" className="text-lg  font-bold">
-                  Início
-                </Link>
-              ) : null}
-              <HomeIcon />
+            <div className=" gap-2 hover:cursor-pointer hover:text-brand-200 pr-2 ">
+              <Link
+                href="/scribe-ai"
+                className="text-lg  font-bold flex items-center justify-between"
+              >
+                {open ? "Início" : null}
+                <HomeIcon />
+              </Link>
             </div>
             {open ? <Separator className="my-2 bg-zinc-700" /> : null}
           </li>
           <li>
-            <div className="flex items-center justify-between gap-2 hover:cursor-pointer hover:text-brand-200 pr-2  ">
-              {open ? (
-                <Link href="/scribe-ai/patients" className="text-lg font-bold">
-                  {" "}
-                  Pacientes
-                </Link>
-              ) : null}
-              <UsersRound />
+            <div className="gap-2 hover:cursor-pointer hover:text-brand-200 pr-2  ">
+              <Link
+                href="/scribe-ai/patients"
+                className="text-lg font-bold flex items-center justify-between"
+              >
+                {" "}
+                {open ? "Pacientes" : null}
+                <UsersRound />
+              </Link>
             </div>
             {open ? <Separator className="my-2 bg-zinc-700" /> : null}
           </li>
           <li>
-            <div className="flex items-center justify-between gap-2 hover:cursor-pointer hover:text-brand-200 pr-2 ">
-              {open ? (
-                <Link
-                  href="/scribe-ai/patients/add"
-                  className="text-lg font-bold"
-                >
-                  Adicionar Paciente
-                </Link>
-              ) : null}
-              <UserRoundPlus />
+            <div className="gap-2 hover:cursor-pointer hover:text-brand-200 pr-2 ">
+              <Link
+                href="/scribe-ai/patients/add"
+                className="text-lg font-bold flex items-center justify-between"
+              >
+                {open ? "Adicionar Paciente" : null}
+                <UserRoundPlus />
+              </Link>
             </div>
             {open ? <Separator className="my-2 bg-zinc-700" /> : null}
           </li>
           <li>
-            <div className="flex items-center justify-between gap-2 hover:cursor-pointer hover:text-brand-200 pr-2 ">
-              {open ? (
-                <Link
-                  href="/scribe-ai/transcribe"
-                  className="text-lg font-bold"
-                >
-                  Nova Transcrição
-                </Link>
-              ) : null}
-              <NotebookPen />
+            <div className="gap-2 hover:cursor-pointer hover:text-brand-200 pr-2 ">
+              <Link
+                href="/scribe-ai/transcribe"
+                className="text-lg font-bold flex items-center justify-between"
+              >
+                {open ? "Nova Transcrição" : null}
+                 <NotebookPen />
+              </Link>
+
+             
             </div>
             {open ? <Separator className="my-2 bg-zinc-700" /> : null}
           </li>

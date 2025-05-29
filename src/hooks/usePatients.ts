@@ -30,6 +30,7 @@ export interface MedicalRecord {
 
 export function usePatients() {
   const [patients, setPatients] = useState<Patient[]>([]);
+  const [patient, setPatient] = useState<Patient>()
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -84,7 +85,19 @@ export function usePatients() {
     } catch (err) {
       throw new Error("Erro ao deletar paciente");
     }
-  };
+  }; 
+
+  const getPatient = async (id:number) =>{
+    
+    try {
+      const data = await apiService.getPatient(id)
+      setPatient(data);
+    }
+    catch {
+      error
+    }
+
+  }
 
   useEffect(() => {
     fetchPatients();
@@ -94,9 +107,11 @@ export function usePatients() {
     patients,
     loading,
     error,
+    patient,
     refetch: fetchPatients,
     createPatient,
     updatePatient,
     deletePatient,
+    getPatient
   };
 }

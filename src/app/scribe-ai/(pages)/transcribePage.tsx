@@ -32,7 +32,7 @@ export const TranscribePage = ({id}: TranscribePageProps) => {
           <p>Clique no botão para gravar ou selecione um áudio para enviar</p>
         </CardDescription>
         <CardContent className="flex justify-between items-center">
-            <TranscriptionForm/>
+            <TranscriptionForm id={id}/>
         </CardContent>
       </Card>
     </div>

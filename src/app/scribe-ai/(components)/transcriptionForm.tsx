@@ -5,19 +5,25 @@ import {
   DialogContent,
   DialogHeader,
   DialogTrigger,
+  DialogTitle,
+  DialogFooter,
+  DialogClose,
 } from "@/components/ui/dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
 import { useTranscription } from "@/hooks/useTranscription";
-import { DialogTitle } from "@radix-ui/react-dialog";
 import { FileAudio, Mic, NotebookPen, Upload } from "lucide-react";
+import Link from "next/link";
 import React, { useRef, useState } from "react";
 
-export const TranscriptionForm = () => {
+
+interface TranscriptionFormProps {
+  id: number
+}
+
+export const TranscriptionForm = ({id}:TranscriptionFormProps) => {
   const { transcribe, transcribeForPatient, loading } = useTranscription();
   // const { patients } = usePatients();
   const [file, setFile] = useState<File | null>(null);
-  const [selectedPatient, setSelectedPatient] = useState<string>("");
   const [transcriptionResult, setTranscriptionResult] = useState<any>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -32,8 +38,8 @@ export const TranscriptionForm = () => {
 
     try {
       let result;
-      if (selectedPatient) {
-        result = await transcribeForPatient(parseInt(selectedPatient), file);
+      if (id) {
+        result = await transcribeForPatient(id, file);
       } else {
         result = await transcribe(file);
       }
@@ -45,7 +51,6 @@ export const TranscriptionForm = () => {
 
   const resetForm = () => {
     setFile(null);
-    setSelectedPatient("");
     setTranscriptionResult(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
@@ -172,6 +177,17 @@ export const TranscriptionForm = () => {
               )}
             </CardContent>
           </Card>
+          {transcriptionResult ? (
+            <DialogFooter>
+              <DialogClose asChild>
+                <Link href={`/scribe-ai/patients/records/${id}`}  >
+                  <Button className="w-full bg-brand-200 hover:bg-brand-200/80 hover:cursor-pointer">
+                    Salvar
+                  </Button>
+                </Link>
+              </DialogClose>
+            </DialogFooter>
+          ) : null}
         </DialogContent>
       </Dialog>
     </>

@@ -30,9 +30,11 @@ export const PatientCard = ({name, id}:PatientCardProps) => {
             </Button>
           </Link>
 
-          <Button variant="outline">
-            Ver paciente <UserRound strokeWidth="2" />{" "}
-          </Button>
+          <Link href={`/scribe-ai/patients/records/${id}`}>
+            <Button variant="outline" className="hover:cursor-pointer">
+              Ver paciente <UserRound strokeWidth="2" />{" "}
+            </Button>
+          </Link>
         </div>
       </CardContent>
     </Card>
