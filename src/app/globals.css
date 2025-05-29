@@ -5,12 +5,10 @@
 
 @theme inline {
 
-
     --color-brand-50: #EAF7F7;
     --color-brand-100: #A9D9D0;
     --color-brand-200: #038C7F;
     --color-brand-dark: #012E40;
-
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
