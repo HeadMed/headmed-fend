@@ -7,14 +7,14 @@ import { HowItWorks } from './(sections)/howItWorks'
 
 const page = () => {
   return (
-    <div className='w-full h-screen flex flex-col'>
+    <div className='w-full h-screen flex flex-col bg-red-500'>
       <NavBar />
 
-      <main className='flex flex-col flex-1 gap-0 bg-linear-to-r from-white from-10%  to-brand-100 to-80%'>
+      <main className=' bg-linear-to-r from-white from-10%  to-brand-100 to-80%'>
 
         <AutoPront />
-        <FeatureSection />
-        <HowItWorks />
+         <FeatureSection />
+       <HowItWorks />
 
       </main>
 

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 
 export const AutoPront = () => {
   return (
-    <section className="flex flex-col justify-center items-center w-screen h-auto py-10 bg-transparent">
+    <section className="flex flex-col justify-center items-center w-full h-auto py-10 bg-transparent">
       <div className="flex flex-col items-center justify-around gap-6 w-3/4 px-4">
         <h1 className="text-5xl w-2xl font-bold text-center">
           Automatize seus
