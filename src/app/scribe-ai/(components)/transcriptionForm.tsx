@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { useTranscription } from "@/hooks/useTranscription";
-import { FileAudio, Mic, NotebookPen, Upload } from "lucide-react";
+import { FileAudio, Mic, NotebookPen, StopCircle, Upload } from "lucide-react";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
 
@@ -26,6 +26,10 @@ export const TranscriptionForm = ({id}:TranscriptionFormProps) => {
   const [file, setFile] = useState<File | null>(null);
   const [transcriptionResult, setTranscriptionResult] = useState<any>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const mediaRecorder = useRef<MediaRecorder | null>(null);
+  const [audioSrc, setAudioSrc] = useState<string | null>(null);
+  const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
+  const [isRecording, setIsRecording] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -57,13 +61,55 @@ export const TranscriptionForm = ({id}:TranscriptionFormProps) => {
     }
   };
 
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder.current = new MediaRecorder(stream);
+      const chunks: Blob[] = [];
+
+      mediaRecorder.current.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          chunks.push(event.data);
+        }
+      };
+
+      mediaRecorder.current.onstop = () => {
+        const blob = new Blob(chunks, { type: "audio/webm" });
+        const audioUrl = URL.createObjectURL(blob);
+        setAudioSrc(audioUrl);
+        setAudioBlob(blob);
+        console.log("Áudio gravado:", audioUrl);
+      };
+
+      mediaRecorder.current.start();
+      setIsRecording(true);
+    } catch (error) {
+      console.error("Erro ao acessar o microfone:", error);
+    }
+  };
+  const stopRecording = () => {
+    if (mediaRecorder.current && mediaRecorder.current.state !== "inactive") {
+      mediaRecorder.current.stop();
+      setIsRecording(false);
+    }
+  };
   return (
     <>
       <div className="flex justify-between items-center gap-4 ">
-        <Button className="bg-brand-200 hover:bg-brand-200/80 hover:cursor-pointer text-md font-semibold">
-          {" "}
-          Iniciar gravação <Mic strokeWidth="3" />{" "}
+        <Button
+          onClick={isRecording ? stopRecording : startRecording}
+          className={` flex items-center space-x-2 bg-brand-200 hover:bg-brand-200/80 hover:cursor-pointer   ${
+            isRecording ? "bg-red-500 hover:bg-red-500/80" : ""
+          }`}
+        >
+          {isRecording ? (
+            <StopCircle className="w-5 h-5" />
+          ) : (
+            <Mic className="w-5 h-5" />
+          )}
+          <span>{isRecording ? "Parar Gravação" : "Iniciar Gravação"}</span>
         </Button>
+
         <Card className="bg-transparent shadow-none border-none ">
           <CardContent>
             <div className="">
@@ -180,7 +226,7 @@ export const TranscriptionForm = ({id}:TranscriptionFormProps) => {
           {transcriptionResult ? (
             <DialogFooter>
               <DialogClose asChild>
-                <Link href={`/scribe-ai/patients/records/${id}`}  >
+                <Link href={`/scribe-ai/patients/records/${id}`}>
                   <Button className="w-full bg-brand-200 hover:bg-brand-200/80 hover:cursor-pointer">
                     Salvar
                   </Button>
