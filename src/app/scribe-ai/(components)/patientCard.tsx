@@ -53,7 +53,7 @@ export const PatientCard = ({name, id, cpf, idade, phone, qnt}:PatientCardProps)
 
           <div className="flex items-center space-x-3">
             <Link href={`/scribe-ai/patients/records/${id}`}>
-              <Button variant="outline" className="border-teal-500 text-teal-600 hover:bg-teal-50">
+              <Button variant="outline" className="border-teal-500 text-teal-600 hover:bg-teal-50 hover:cursor-pointer">
                 <FileText size={16} className="mr-2" />
                 Prontuários
               </Button>
