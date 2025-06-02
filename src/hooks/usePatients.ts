@@ -1,4 +1,3 @@
-// src/hooks/usePatients.ts
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
@@ -7,10 +6,11 @@ import { apiService } from "@/lib/api";
 export interface Patient {
   id: number;
   nome: string;
-  cpf: string;
+  cpf_display: string;
   data_nascimento: string;
   created_at: string;
   prontuarios?: MedicalRecord[];
+  idade: number;
 }
 
 export interface MedicalRecord {
@@ -38,10 +38,20 @@ export function usePatients() {
     setLoading(true);
     setError(null);
     try {
-      // sem argumento
       const data = await apiService.getPatients();
-      // como o backend retorna um array puro:
-      setPatients(data);
+      
+      const patientsWithRecords = await Promise.all(
+        data.map(async (patient: Patient) => { 
+          try {
+            const records = await apiService.getPatientRecords(patient.id);
+            return { ...patient, prontuarios: records };
+          } catch {
+            return { ...patient, prontuarios: [] };
+          }
+        })
+      );
+      
+      setPatients(patientsWithRecords);
     } catch (err: any) {
       setError(err.message || "Erro ao buscar pacientes");
     } finally {
@@ -78,25 +88,13 @@ export function usePatients() {
     }
   };
 
-  const deletePatient = async (id: number) => {
-    try {
-      await apiService.deletePatient(id);
-      setPatients((prev) => prev.filter((p) => p.id !== id));
-    } catch (err) {
-      throw new Error("Erro ao deletar paciente");
-    }
-  }; 
-
-  const getPatient = async (id:number) =>{
-    
+  const getPatient = async (id: number) => {
     try {
       const data = await apiService.getPatient(id)
       setPatient(data);
+    } catch {
+      console.error("Erro ao buscar paciente");
     }
-    catch {
-      error
-    }
-
   }
 
   useEffect(() => {
@@ -111,7 +109,7 @@ export function usePatients() {
     refetch: fetchPatients,
     createPatient,
     updatePatient,
-    deletePatient,
+    setPatient, 
     getPatient
   };
 }
