@@ -1,27 +1,29 @@
 "use client";
-import React, { useState } from 'react'
-import { PatientCard } from '../(components)/patientCard';
-import { usePatients } from '@/hooks/usePatients'; 
-import { calculateAge } from '@/utils/utilsData';
-import { Input } from '@/components/ui/input';
-import { Search } from 'lucide-react';
+import React, { useState } from "react";
+import { PatientCard } from "../(components)/patientCard";
+import { usePatients } from "@/hooks/usePatients";
+import { calculateAge } from "@/utils/utilsData";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 export const PatientsPage = () => {
-const { patients, loading, error } = usePatients();
-const [search, setSearch] = useState("")
+  const { patients, loading, error } = usePatients();
+  const [search, setSearch] = useState("");
 
-const filteredPatients = patients.filter((p) =>
-  p.nome.toLowerCase().includes(search.toLowerCase())
-)
+  const filteredPatients = patients.filter(
+    (p) =>
+      p.nome.toLowerCase().includes(search.toLowerCase()) ||
+      p.cpf_display.replace(/\D/g, "").includes(search.replace(/\D/g, ""))
+  );
 
   return (
     <div className="h-full flex-1 flex flex-col ">
-      <div className="z-100 min-h-16 w-full bg-zinc-100 shadow-lg flex items-center justify-start px-4 ">
-        <div className="relative w-full max-w-md">
+      <div className="z-100 min-h-16 w-full bg-zinc-100 shadow-lg flex items-center justify-center px-4 ">
+        <div className="relative w-1/2">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
           <Input
             type="search "
-            placeholder="Pesquisar paciente"
-            className="w-96 pl-10"
+            placeholder="Digite o nome ou CPF do paciente"
+            className="w-full pl-10"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -42,6 +44,4 @@ const filteredPatients = patients.filter((p) =>
       </div>
     </div>
   );
-}
-
-
+};
