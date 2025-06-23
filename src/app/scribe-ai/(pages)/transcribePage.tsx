@@ -33,7 +33,7 @@ export const TranscribePage = ({ id }: TranscribePageProps) => {
           <Separator />
         </CardHeader>
         <CardDescription className="text-md font-semibold ml-5">
-          <p>Clique no botão para gravar ou selecione um áudio para enviar</p>
+          
         </CardDescription>
         <CardContent className="flex justify-between items-center">
           <TranscriptionForm id={id} />
