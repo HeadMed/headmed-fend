@@ -38,8 +38,8 @@ export const PatientRecordPage = ({ id }: PatientRecordPageInterface) => {
   const records = patient?.prontuarios;
 
   return (
-    <div className="min-h-screen w-full bg-brand-50">
-      <header className="bg-brand-dark text-white shadow-lg">
+    <div className=" w-full bg-brand-50 ">
+      <header className="z-100 bg-brand-dark text-white shadow-lg">
         <div className="container mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3 sm:space-x-4">
@@ -59,7 +59,7 @@ export const PatientRecordPage = ({ id }: PatientRecordPageInterface) => {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <main className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 ">
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
