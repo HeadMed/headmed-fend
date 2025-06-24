@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { useTranscription } from "@/hooks/useTranscription";
-import { FileAudio, Mic, NotebookPen, StopCircle, Upload } from "lucide-react";
+import { FileAudio, Mic, NotebookPen, StopCircle, Upload, X } from "lucide-react";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
 
@@ -34,19 +34,27 @@ export const TranscriptionForm = ({ id }: TranscriptionFormProps) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
+      setAudioBlob(null); // limpa o áudio gravado
+      setAudioSrc(null);
     }
   };
 
-  const handleTranscribe = async () => {  
-    if (!file) return;
+  const handleTranscribe = async () => {
+    // Só permite um ativo
+    const audioToSend =
+      file ||
+      (audioBlob
+        ? new File([audioBlob], "gravacao.webm", { type: "audio/webm" })
+        : null);
+    if (!audioToSend) return;
 
     try {
       let result;
+      setIsTranscribing(true);
       if (id) {
-        setIsTranscribing(true);
-        result = await transcribeForPatient(id, file);
+        result = await transcribeForPatient(id, audioToSend);
       } else {
-        result = await transcribe(file);
+        result = await transcribe(audioToSend);
       }
       setTranscriptionResult(result);
     } catch (error) {
@@ -92,6 +100,7 @@ export const TranscriptionForm = ({ id }: TranscriptionFormProps) => {
     if (mediaRecorder.current && mediaRecorder.current.state !== "inactive") {
       mediaRecorder.current.stop();
       setIsRecording(false);
+      setFile(null);
     }
   };
 
@@ -120,6 +129,28 @@ export const TranscriptionForm = ({ id }: TranscriptionFormProps) => {
               )}
               <span>{isRecording ? "Parar Gravação" : "Iniciar Gravação"}</span>
             </Button>
+
+            {/* Indicação de áudio gravado */}
+            {audioBlob && !file && (
+              <div className="relative flex flex-col items-center space-y-2 bg-zinc-50 rounded-lg p-4">
+                {/* Botão X para remover */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAudioBlob(null);
+                    setAudioSrc(null);
+                  }}
+                  className="absolute top-2 right-2 text-zinc-400 hover:text-red-500"
+                  aria-label="Remover áudio gravado"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <span className="text-green-700 font-semibold">
+                  Áudio gravado!
+                </span>
+                {audioSrc && <audio controls src={audioSrc} className="w-48" />}
+              </div>
+            )}
 
             <Card className="bg-transparent shadow-none border-none ">
               <CardContent>
@@ -165,6 +196,7 @@ export const TranscriptionForm = ({ id }: TranscriptionFormProps) => {
           <Button
             onClick={handleTranscribe}
             className="bg-brand-200 hover:bg-brand-200/80 hover:cursor-pointer text-md font-semibold"
+            disabled={(!file && !audioBlob) || (!!file && !!audioBlob)}
           >
             Transcrever
             <NotebookPen strokeWidth="3" />
