@@ -1,18 +1,22 @@
-import React from 'react'
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Mic, NotebookPen, PencilLine, PenLine, Upload } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+} from "@/components/ui/card";
 import { usePatients } from "@/hooks/usePatients";
-import { TranscriptionForm } from '../(components)/transcriptionForm';
+import { TranscriptionForm } from "../(components)/transcriptionForm";
 interface TranscribePageProps {
   // Define any props if needed
   id: number;
-} 
+}
 
-
-export const TranscribePage = ({id}: TranscribePageProps) => {
-  const { patients, loading, error} = usePatients();
+export const TranscribePage = ({ id }: TranscribePageProps) => {
+  const { patients, loading, error } = usePatients();
   const patient = patients.find((p) => p.id === Number(id));
   return (
     <div className="h-full flex-1 flex items-center justify-center">
@@ -29,14 +33,12 @@ export const TranscribePage = ({id}: TranscribePageProps) => {
           <Separator />
         </CardHeader>
         <CardDescription className="text-md font-semibold ml-5">
-          <p>Clique no botão para gravar ou selecione um áudio para enviar</p>
+          
         </CardDescription>
         <CardContent className="flex justify-between items-center">
-            <TranscriptionForm id={id}/>
+          <TranscriptionForm id={id} />
         </CardContent>
       </Card>
     </div>
   );
-}
-
-
+};

@@ -15,37 +15,66 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const page = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-    const { login } = useAuth();
-    const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
+  // Estados para erros individuais
+  const [usernameError, setUsernameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const { login } = useAuth();
+  const router = useRouter();
+
+  const validateUsername = (value: string) => {
+    if (!value.trim()) {
+      setUsernameError("Nome de usuário é obrigatório");
+      return false;
+    }
+    setUsernameError("");
+    return true;
+  };
+
+  // Função para validar confirmação de senha
+  const validatePassword = (value: string) => {
+    if (!value.trim()) {
+      setPasswordError("Senha é obrigatório");
+      return false;
+    }
+    setPasswordError("");
+    return true;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
+
+    // Validar todos os campos
+    const isUsernameValid = validateUsername(username);
+    const isPasswordValid = validatePassword(password);
+
+    // Se algum campo for inválido, parar o submit
+    if (!isUsernameValid || !isPasswordValid) {
+      setLoading(false);
+      return;
+    }
 
     if (!username || !password) {
-      window.alert("Por favor, preencha todos os campos.");
+      setError("Por favor, preencha todos os campos.");
+    } else {
+      try {
+        await login(username, password);
+        router.push("/scribe-ai");
+      } catch (err) {
+        setError("Nome de usuário ou senha inválida!");
+        setUsernameError(" ");
+        setPasswordError(" ");
+      } finally {
+        setLoading(false);
+      }
     }
-    else{
-
-        try {
-          await login(username, password);
-          router.push("/scribe-ai");
-        } catch (err) {
-          setError("Credenciais inválidas");
-          window.alert("Credenciais inválidas");
-        } finally {
-          setLoading(false);
-        }
-
-    }
-
-    
   };
   return (
     <main className="h-dvh w-dvw bg-brand-200 flex justify-end">
@@ -65,9 +94,22 @@ const page = () => {
                 <Input
                   name="user"
                   value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                    if (usernameError) validateUsername(e.target.value);
+                  }}
+                  onBlur={(e) => validateUsername(e.target.value)}
                   placeholder="Insira o nome de usuário"
+                  className={
+                    usernameError
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                      : ""
+                  }
+                  required
                 />
+                {usernameError && (
+                  <p className="text-red-500 text-xs mt-1">{usernameError}</p>
+                )}
               </div>
               <div>
                 <Label
@@ -80,10 +122,24 @@ const page = () => {
                   name="password"
                   type="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Insira a Senha"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    if (passwordError) validatePassword(e.target.value);
+                  }}
+                  onBlur={(e) => validatePassword(e.target.value)}
+                  placeholder="Confirme a Senha"
+                  className={
+                    passwordError
+                      ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                      : ""
+                  }
+                  required
                 />
+                {passwordError && (
+                  <p className="text-red-500 text-xs mt-1">{passwordError}</p>
+                )}
               </div>
+              {error && <div className="text-red-700 rounded">{error}</div>}
             </CardContent>
             <CardFooter className="flex flex-col items-center mt-6 gap-4">
               <Button
