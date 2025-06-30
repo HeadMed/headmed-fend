@@ -6,7 +6,7 @@ export const FeatureSection = () => {
   return (
     <section className="flex flex-col items-center py-16 h-auto bg-white">
       <div className="flex flex-col space-y-4 items-center px-4">
-        <h1 className="text-5xl w-2xl font-bold text-center">
+        <h1 className="text-5xl w-lg sm:w-2xl font-bold text-center">
           Principais Funcionalidades
         </h1>
 
@@ -14,7 +14,7 @@ export const FeatureSection = () => {
           Desenvolvido especificamente para profissionais de saúde modernos
         </p>
 
-        <div className=" max-w-6xl grid grid-cols-3 grid-flow-row gap-2">
+        <div className=" max-w-6xl px-2 grid grid-cols-2 sm:grid-cols-3 grid-flow-row gap-2">
           <Card>
             <CardHeader>
               <BrainCircuit className="text-brand-200" />

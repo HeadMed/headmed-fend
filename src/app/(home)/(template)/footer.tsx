@@ -10,7 +10,7 @@ import React from "react";
 
 export const Footer = () => {
   return (
-    <footer className="w-full bg-brand-dark text-white py-8 px-4 grid grid-cols-4 grid-flow-row gap-4 ">
+    <footer className="w-full bg-brand-dark text-white py-8 px-4 flex flex-col items-center justify-center sm:grid grid-cols-4 grid-flow-row gap-4 ">
       <Card className="w-xs bg-transparent border-none">
         <CardHeader>
           <CardTitle className="text-white text-xl font-bold">
@@ -75,7 +75,7 @@ export const Footer = () => {
         </CardFooter>
       </Card>
       <Separator className="col-span-4 my-4 bg-zinc-300" />
-      <div className="flex col-span-4 items-center justify-between text-sm text-zinc-300 px-4">
+      <div className="flex flex-col sm:flex-row col-span-4 items-center justify-between text-sm text-zinc-300 px-4">
         <p> © 2025 HeadMed. Todos os direitos reservados. </p>
         <ul className="flex items-center gap-4 [&>li]:hover:cursor-pointer [&>li]:hover:text-brand-200 [&>li]:hover:underline">
           <li>Privacidade</li>

@@ -7,21 +7,17 @@ import { HowItWorks } from './(sections)/howItWorks'
 
 const page = () => {
   return (
-    <div className='w-full h-screen flex flex-col bg-red-500'>
+    <div className="max-w-dvw h-dvh flex flex-col overflow-x-hidden">
       <NavBar />
 
-      <main className=' bg-linear-to-r from-white from-10%  to-brand-100 to-80%'>
-
+      <main className="max-w-full bg-linear-to-r from-white from-10%  to-brand-100 to-80% ">
         <AutoPront />
-         <FeatureSection />
-       <HowItWorks />
-
+        <FeatureSection />
+        <HowItWorks />
       </main>
-
-
-      <Footer/>
+      <Footer />
     </div>
-  )
+  );
 }
 
 export default page
