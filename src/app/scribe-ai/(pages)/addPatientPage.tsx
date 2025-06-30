@@ -42,7 +42,7 @@ export const AddPatientPage = () => {
   };
 
   return (
-    <div className="h-full flex-1 flex items-center justify-center">
+    <div className="h-full flex-1 flex items-center justify-center px-5">
       <Card className="w-96">
         <CardHeader className="text-center">
           <span className="font-bold text-2xl">Adicionar Paciente</span>

@@ -17,8 +17,8 @@ export const PatientsPage = () => {
 
   return (
     <div className="h-full flex-1 flex flex-col ">
-      <div className="z-100 min-h-16 w-full bg-zinc-100 shadow-lg flex items-center justify-center px-4 ">
-        <div className="relative w-1/2">
+      <div className="z-50 min-h-16 w-full bg-zinc-100 shadow-lg flex items-center justify-center px-4 ">
+        <div className="relative w-full sm:w-1/2">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
           <Input
             type="search "

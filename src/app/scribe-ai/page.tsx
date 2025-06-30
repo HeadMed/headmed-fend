@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <ProtectedRoute>
-      <div className="h-dvh w-full flex flex-col bg-linear-to-l from-white from-30% to-brand-50">
+      <div className="h-dvh w-dvw flex flex-col bg-linear-to-l from-white from-30% to-brand-50">
         <HeaderScribe/>
         <HomePage />
       </div>

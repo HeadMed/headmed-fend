@@ -111,14 +111,14 @@ export const TranscriptionForm = ({ id }: TranscriptionFormProps) => {
           {isTranscribing ? (
             <p>Resultado da Transcrição</p>
           ) : (
-            <p>Clique no botão para gravar ou selecione um áudio para enviar</p>
+            <p className="text-sm text-center sm:text-left sm:text-md">Clique no botão para gravar ou selecione um áudio para enviar</p>
           )}
         </div>
-        <div className=" flex items-center justify-between p-2">
-          <div className="flex justify-between items-center gap-4">
+        <div className=" flex flex-col sm:flex-row items-center justify-between p-2 ">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <Button
               onClick={isRecording ? stopRecording : startRecording}
-              className={` flex items-center space-x-2 bg-brand-200 hover:bg-brand-200/80 hover:cursor-pointer   ${
+              className={`w-44 flex items-center space-x-2 bg-brand-200 hover:bg-brand-200/80 hover:cursor-pointer   ${
                 isRecording ? "bg-red-500 hover:bg-red-500/80" : ""
               }`}
             >
@@ -181,7 +181,7 @@ export const TranscriptionForm = ({ id }: TranscriptionFormProps) => {
                   ) : (
                     <div className="space-y-4">
                       <Button
-                        className="bg-brand-dark hover:bg-brand-dark/80 hover:cursor-pointer text-md font-semibold"
+                        className="w-44 bg-brand-dark hover:bg-brand-dark/80 hover:cursor-pointer text-md font-semibold"
                         onClick={() => fileInputRef.current?.click()}
                       >
                         Selecionar Arquivo
@@ -195,7 +195,7 @@ export const TranscriptionForm = ({ id }: TranscriptionFormProps) => {
           </div>
           <Button
             onClick={handleTranscribe}
-            className="bg-brand-200 hover:bg-brand-200/80 hover:cursor-pointer text-md font-semibold"
+            className="w-44 bg-brand-200 hover:bg-brand-200/80 hover:cursor-pointer text-md font-semibold"
             disabled={(!file && !audioBlob) || (!!file && !!audioBlob)}
           >
             Transcrever
@@ -209,11 +209,11 @@ export const TranscriptionForm = ({ id }: TranscriptionFormProps) => {
   const TranscriptionResult = () => {
     return (
       <div className="min-w-full">
-        <Card className="w-full h-[500px] overflow-y-scroll">
+        <Card className="w-full max-h-[50vh] overflow-y-scroll ">
           <CardHeader>
             <CardTitle>Resultado da Transcrição</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="">
             {!transcriptionResult ? (
               <div className="text-center py-8 text-muted-foreground flex flex-col items-center justify-center">
                 <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-brand-200"></div>

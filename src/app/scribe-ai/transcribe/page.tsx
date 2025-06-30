@@ -6,7 +6,7 @@ import { HomePage } from "../(pages)/homePage";
 import { PatientSelectPage } from "../(pages)/patientSelectPage";
 import { HeaderScribe } from "../(components)/headerScribe";
 
-
+ 
 export default function Home() {
   return (
     <ProtectedRoute>
