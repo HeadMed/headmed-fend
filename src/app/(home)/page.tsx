@@ -7,7 +7,7 @@ import { HowItWorks } from './(sections)/howItWorks'
 
 const page = () => {
   return (
-    <div className="max-w-dvw h-dvh flex flex-col overflow-x-hidden">
+    <div className="w-dvw max-w-dvw h-dvh flex flex-col overflow-x-hidden">
       <NavBar />
 
       <main className="max-w-full bg-linear-to-r from-white from-10%  to-brand-100 to-80% ">

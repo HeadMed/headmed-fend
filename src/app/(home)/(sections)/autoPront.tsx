@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export const AutoPront = () => {
   return (
-    <section className="flex flex-col justify-center items-center w-full h-auto py-10  bg-transparent">
+    <section className="flex flex-col justify-center items-center w-full h-auto py-10  bg-transparent mt-16">
       <div className="flex flex-col items-center justify-around gap-6 w-full sm:w-3/4 px-6">
         <h1 className="text-3xl sm:text-5xl w-72 sm:w-2xl font-bold text-center">
           Automatize seus
@@ -29,7 +29,7 @@ export const AutoPront = () => {
           </Button>
         </div>
 
-        <ul className="grid grid-cols-2 grid-rows-2 sm:flex sm:flex-row justify-between items-center w-3/4 text-center px-4">
+        {/* <ul className="grid grid-cols-2 grid-rows-2 sm:flex sm:flex-row justify-between items-center w-3/4 text-center px-4">
           <li>
             <span className="text-center font-bold text-4xl text-brand-200">
               98%
@@ -50,7 +50,7 @@ export const AutoPront = () => {
             </span>
             <p className="text-zinc-700">Médicos Ativos</p>
           </li>
-        </ul>
+        </ul> */}
       </div>
     </section>
   );
